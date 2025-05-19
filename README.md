@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ORM Comparison in Next.js App Router
 
-## Getting Started
+This repository provides a hands-on comparison of popular TypeScript-friendly ORMs — **Prisma**, **Drizzle**, and **Kysely** — in the context of **Next.js App Router**.
 
-First, run the development server:
+## 📦 What’s Included
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ✅ Implementations for each ORM using `/api/[orm]/users` route
+- ✅ Schema and migration setup
+- ✅ Seed scripts
+- ✅ Docker setup with PostgreSQL and MySQL
+- ✅ Type-safe query examples
+- ✅ Visual structure to help you compare and choose
+
+## 📁 Project Structure
+
+```
+src/
+├── app/api/[orm]/users/route.ts # API endpoints for Prisma / Drizzle / Kysely
+├── lib/ # ORM clients
+├── schema/ # Drizzle schema
+├── types/ # Kysely schema
+├── prisma/ # Prisma schema & migrations
+├── drizzle/ # Drizzle migration artifacts
+├── scripts/ # Seed scripts for each ORM
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Clone and Install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/your-username/nextjs-orm-comparison.git
+cd nextjs-orm-comparison
+npm install
+```
 
-## Learn More
+### 2. Setup Environment
+Create `.env` and `.env.local`
 
-To learn more about Next.js, take a look at the following resources:
+```
+# .env.local
+POSTGRES_URL=postgresql://user:password@localhost:5432/appdb
+MYSQL_URL=mysql://user:password@localhost:3306/appdb
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Start DBs with Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+docker-compose up -d
+```
 
-## Deploy on Vercel
+### 4. Run Migrations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+# Prisma
+npx prisma migrate dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Drizzle
+npx drizzle-kit push
+
+# Kysely (manual or via migration script)
+```
+
+### 5. Seed Sample Data
+
+```
+# Prisma
+npx ts-node prisma/seed.ts
+
+# Drizzle
+npx ts-node --esm scripts/drizzle-seed.ts
+
+# Kysely
+npx ts-node --esm scripts/kysely-seed.ts
+```
+
+### 6. Start Dev Server
+
+```
+npm run dev
+```
+
+Visit:
+
+- http://localhost:3000/api/prisma/users
+- http://localhost:3000/api/drizzle/users
+- http://localhost:3000/api/kysely/users
+
+## 📊 Comparison Highlights
+
+| ORM     | Dev Experience | Migrations | Type Safety | Edge Runtime | Easy Init |
+| ------- | -------------- | ---------- | ----------- | ------------ | --------- |
+| Prisma  | ◎              | ◎          | ◎           | △            | ◎         |
+| Drizzle | ◎              | ○          | ◎           | ◎            | ◎         |
+| Kysely  | ○              | △          | ◎           | ◎            | ○         |
+
+## 📝 Notes
+
+- Prisma works best with PostgreSQL; some features may not work on PlanetScale (MySQL).
+- Drizzle and Kysely offer great flexibility and edge support.
+- This project focuses on App Router only. No Pages Router or GraphQL.
+
+## 📖 License
+MIT
+
+## 🙌 Acknowledgements
+
+Built with ❤️ by [Kazutomo Deguchi](https://github.com/shinagawa-web)
+Inspired by practical struggles in ORM selection for modern frontend-backend fullstack development.
