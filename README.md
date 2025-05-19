@@ -1,3 +1,6 @@
+> This repository is part of our technical blog:
+> [Next.js App Router × ORM hands-on: Prisma / Drizzle / Kysely with Docker](http://shinagawa-web.com/blogs/nextjs-orm-docker-hands-on)
+
 # ORM Comparison in Next.js App Router
 
 This repository provides a hands-on comparison of popular TypeScript-friendly ORMs — **Prisma**, **Drizzle**, and **Kysely** — in the context of **Next.js App Router**.
