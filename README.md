@@ -1,18 +1,39 @@
-> This repository is part of our technical blog:
-> [Next.js App Router × ORM hands-on: Prisma / Drizzle / Kysely with Docker](http://shinagawa-web.com/blogs/nextjs-orm-docker-hands-on)
 
 # ORM Comparison in Next.js App Router
 
-This repository provides a hands-on comparison of popular TypeScript-friendly ORMs — **Prisma**, **Drizzle**, and **Kysely** — in the context of **Next.js App Router**.
+A hands-on comparison project for using multiple ORMs (Prisma, Drizzle ORM, Kysely) in a Next .js App Router setup with Docker-based MySQL/PostgreSQL.
+Corresponds to the blog article:
 
-## 📦 What’s Included
+> This repository is part of our technical blog:
+> [Next.js App Router × ORM hands-on: Prisma / Drizzle / Kysely with Docker](http://shinagawa-web.com/blogs/nextjs-orm-docker-hands-on)
 
-- ✅ Implementations for each ORM using `/api/[orm]/users` route
-- ✅ Schema and migration setup
-- ✅ Seed scripts
-- ✅ Docker setup with PostgreSQL and MySQL
-- ✅ Type-safe query examples
-- ✅ Visual structure to help you compare and choose
+## Why
+
+Choosing an ORM is rarely about performance alone.  
+It affects how teams collaborate, onboard new members, evolve schemas, and diagnose issues in production.
+
+Next.js App Router blurs the boundary between UI and backend logic, which means:
+
+- Database access patterns become part of component and route design.
+- Type safety and schema consistency matter more than ever.
+- The cost of “rewriting later” becomes significantly higher.
+
+This repository provides a **hands-on, side-by-side comparison** of Prisma, Drizzle ORM, and Kysely under the same conditions:
+
+- Same database schema
+- Same API behavior
+- Same application structure
+
+So the differences you observe are **real trade-offs**, not theoretical benchmarks.
+
+## Features
+
+- Monorepo structure tailored for Next.js App Router + TypeScript
+- Two database engines via Docker: PostgreSQL and MySQL
+- Three ORMs implemented side-by-side: Prisma, Drizzle, Kysely
+- Example endpoint (/api/<orm>/users) implemented for each ORM
+- Comparison of: migration setup, type-safety, runtime cost, Team experience
+- Clear directory structure and scripts for quick start
 
 ## 📁 Project Structure
 
@@ -89,19 +110,20 @@ Visit:
 - http://localhost:3000/api/drizzle/users
 - http://localhost:3000/api/kysely/users
 
-## 📊 Comparison Highlights
+## What You Can Learn
 
-| ORM     | Dev Experience | Migrations | Type Safety | Edge Runtime | Easy Init |
-| ------- | -------------- | ---------- | ----------- | ------------ | --------- |
-| Prisma  | ◎              | ◎          | ◎           | △            | ◎         |
-| Drizzle | ◎              | ○          | ◎           | ◎            | ◎         |
-| Kysely  | ○              | △          | ◎           | ◎            | ○         |
+- How to set up Next.js App Router with multiple ORMs in one codebase
+- How to configure Docker for PostgreSQL & MySQL simultaneously
+- How each ORM handles: migrations, typing, API integration, team onboarding
+- How to judge which ORM fits your project goals, team skills, and operational constraints
 
-## 📝 Notes
+## For Teams / Production Use
 
-- Prisma works best with PostgreSQL; some features may not work on PlanetScale (MySQL).
-- Drizzle and Kysely offer great flexibility and edge support.
-- This project focuses on App Router only. No Pages Router or GraphQL.
+- Pin versions of ORMs, Node.js, database engines to avoid drift
+- Use CI to enforce consistent schema + implementation across ORMs
+- Document your decision rationale: what trade-offs matter for your project
+- Scale this pattern: add contract tests or performance tests for your chosen ORM
+
 
 ## 📖 License
 MIT
